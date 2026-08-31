@@ -954,4 +954,28 @@ html, body, #app {
   .grid-3 {
     grid-template-columns: 1fr !important;
   }
+
+  // Các layout lưới riêng của từng trang/component (định nghĩa trong <style scoped>
+  // của chính view đó) không nằm trong .grid-2/.grid-3 nên phải liệt kê thêm ở đây.
+  // Dùng !important để thắng cả style nội tuyến (inline) lẫn CSS scoped.
+  .ejs-layout,           // EjsEditor.vue — cột "Mã EJS" / "Kết quả kết xuất"
+  .project-grid {        // Dashboard.vue — lưới thẻ dự án
+    grid-template-columns: 1fr !important;
+  }
+
+  // ApiSettings.vue dùng style nội tuyến "grid-template-columns:repeat(4,...)"
+  // trực tiếp trên thẻ — bắt tổng quát mọi phần tử grid nội tuyến còn sót lại.
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  // "Tra cứu cú pháp EJS": mỗi dòng là code (không tự xuống dòng) + mô tả,
+  // trên màn hình hẹp cho phép xuống dòng để không tràn cạnh phải.
+  .ejs-cheat-item {
+    flex-wrap: wrap;
+    code {
+      white-space: normal;
+      word-break: break-all;
+    }
+  }
 }
